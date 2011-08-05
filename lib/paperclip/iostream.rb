@@ -33,12 +33,15 @@ end
 if defined? Tempfile
   class Tempfile
     def size
+      puts "DOING SIZE"
       if @tmpfile
-        return @tempfile.size unless RUBY_PLATFORM !~ /java/
+        puts "HAVE TEMPFILE #{@tmpfile.inspect}"
+        return @tempfile.stat.size unless RUBY_PLATFORM !~ /java/
         @tmpfile.fsync
         @tmpfile.flush
         @tmpfile.stat.size
       else
+        puts "NO TMPFILE"
         0
       end
     end
