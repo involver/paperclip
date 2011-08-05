@@ -34,7 +34,7 @@ if defined? Tempfile
   class Tempfile
     def size
       if @tmpfile
-        return File.size(@tempfile.path) if RUBY_PLATFORM =~ /java/
+        return File.size(@tmpfile.path) if RUBY_PLATFORM =~ /java/
         @tmpfile.fsync
         @tmpfile.flush
         @tmpfile.stat.size
